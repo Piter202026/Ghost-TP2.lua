@@ -1,7 +1,7 @@
 -- Ghost TP1 (script único pra rodar no Executor)
 -- IDE: script de uma vez só, sem pastas ou módulos externos
-
 -- 0. PREPARAR SERVIÇOS -------------------------------------------------------
+
 local Services = {
 Players = game:GetService("Players"),
 UserInputService = game:GetService("UserInputService"),
