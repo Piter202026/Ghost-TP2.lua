@@ -1,4 +1,4 @@
--- Ghost TP1 (Giant Lifting Simulator)
+-- Ghost TP1 (Giant Lifting Simulator) --
 -- Correções: GUI fixa, arrastar perfeito, fechar na barra corrigido, toggles em loop silencioso
 
 local Players = game:GetService("Players")
@@ -95,185 +95,186 @@ contentFrame.Parent = mainFrame
 
 -- 4. CRIAÇÃO DOS 4 TOGGLES ---------------------------------------------------
 local toggleStates = {
-autoWeightPro = false,
-autoWeightBeginner = false,
-autoBuy = false,
-infDaily = false
+    autoWeightPro = false,
+    autoWeightBeginner = false,
+    autoBuy = false,
+    infDaily = false
 }
 
 local function createToggle(name, posY)
-local tFrame = Instance.new("Frame")
-tFrame.Name = name.."ToggleFrame"
-tFrame.Size = UDim2.new(0.95,0,0,50)
-tFrame.Position = UDim2.new(0.5,-130,0,posY)
-tFrame.AnchorPoint = Vector2.new(0.5,0)
-tFrame.BackgroundTransparency = 1
-tFrame.Parent = contentFrame
+    local tFrame = Instance.new("Frame")
+    tFrame.Name = name.."ToggleFrame"
+    tFrame.Size = UDim2.new(0.95,0,0,50)
+    tFrame.Position = UDim2.new(0.5,-130,0,posY)
+    tFrame.AnchorPoint = Vector2.new(0.5,0)
+    tFrame.BackgroundTransparency = 1
+    tFrame.Parent = contentFrame
 
-local tLabel = Instance.new("TextLabel")
-tLabel.Name = name.."Label"
-tLabel.Size = UDim2.new(0.8,0,1,0)
-tLabel.Position = UDim2.new(0,0,0,0)
-tLabel.Text = name
-tLabel.TextColor3 = Color3.fromRGB(230,230,230)
-tLabel.TextSize = 14
-tLabel.Font = Enum.Font.Gotham
-tLabel.BackgroundTransparency = 1
-tLabel.TextXAlignment = Enum.TextXAlignment.Left
-tLabel.Parent = tFrame
+    local tLabel = Instance.new("TextLabel")
+    tLabel.Name = name.."Label"
+    tLabel.Size = UDim2.new(0.8,0,1,0)
+    tLabel.Position = UDim2.new(0,0,0,0)
+    tLabel.Text = name
+    tLabel.TextColor3 = Color3.fromRGB(230,230,230)
+    tLabel.TextSize = 14
+    tLabel.Font = Enum.Font.Gotham
+    tLabel.BackgroundTransparency = 1
+    tLabel.TextXAlignment = Enum.TextXAlignment.Left
+    tLabel.Parent = tFrame
 
-local tButton = Instance.new("TextButton")
-tButton.Name = name.."Toggle"
-tButton.Size = UDim2.new(0,40,0,20)
-tButton.Position = UDim2.new(1,-45,0.5,-10)
-tButton.AnchorPoint = Vector2.new(1,0.5)
-tButton.Text = ""
-tButton.BackgroundColor3 = Color3.fromRGB(200,200,200)
-tButton.BorderSizePixel = 0
-tButton.ClipsDescendants = true
-tButton.Parent = tFrame
+    local tButton = Instance.new("TextButton")
+    tButton.Name = name.."Toggle"
+    tButton.Size = UDim2.new(0,40,0,20)
+    tButton.Position = UDim2.new(1,-45,0.5,-10)
+    tButton.AnchorPoint = Vector2.new(1,0.5)
+    tButton.Text = ""
+    tButton.BackgroundColor3 = Color3.fromRGB(200,200,200)
+    tButton.BorderSizePixel = 0
+    tButton.ClipsDescendants = true
+    tButton.Parent = tFrame
 
-local dot = Instance.new("Frame")
-dot.Name = "Dot"
-dot.Size = UDim2.new(0,16,0,16)
-dot.Position = UDim2.new(0,2,0.5,-8)
-dot.AnchorPoint = Vector2.new(0,0.5)
-dot.BackgroundColor3 = Color3.fromRGB(255,255,255)
-local c = Instance.new("UICorner")
-c.CornerRadius = UDim.new(1,0)
-c.Parent = dot
-dot.Parent = tButton
+    local dot = Instance.new("Frame")
+    dot.Name = "Dot"
+    dot.Size = UDim2.new(0,16,0,16)
+    dot.Position = UDim2.new(0,2,0.5,-8)
+    dot.AnchorPoint = Vector2.new(0,0.5)
+    dot.BackgroundColor3 = Color3.fromRGB(255,255,255)
+    local c = Instance.new("UICorner")
+    c.CornerRadius = UDim.new(1,0)
+    c.Parent = dot
+    dot.Parent = tButton
 
-return {button=tButton, dot=dot}
+    return {button=tButton, dot=dot}
 end
 
 local toggles = {
-autoWeightPro = createToggle("AUTO WEIGHT 💪 (PRO)",20),
-autoWeightBeginner = createToggle("PESO AUTOMÁTICO 💪 (INICIANTE)",80),
-autoBuy = createToggle("AUTO BUY 🛒",140),
-infDaily = createToggle("✨ INF DAILY ✨",200)
+    autoWeightPro = createToggle("AUTO WEIGHT 💪 (PRO)",20),
+    autoWeightBeginner = createToggle("PESO AUTOMÁTICO 💪 (INICIANTE)",80),
+    autoBuy = createToggle("AUTO BUY 🛒",140),
+    infDaily = createToggle("✨ INF DAILY ✨",200)
 }
 
 -- 5. FUNÇÃO PARA ATIVAR/DESATIVAR TOGGLE -----------------------------------
 local function setToggleState(name)
-toggleStates[name] = not toggleStates[name]
-local t = toggles[name]
-if toggleStates[name] then
-t.button.BackgroundColor3 = name=="autoWeightPro" and Color3.fromRGB(100,200,100) or
-name=="autoWeightBeginner" and Color3.fromRGB(150,220,150) or
-name=="autoBuy" and Color3.fromRGB(200,200,100) or
-Color3.fromRGB(220,100,220)
-t.dot.Position = UDim2.new(0.5,-12,0.5,-8)
-else
-t.button.BackgroundColor3 = Color3.fromRGB(200,200,200)
-t.dot.Position = UDim2.new(0,2,0.5,-8)
-end
+    toggleStates[name] = not toggleStates[name]
+    local t = toggles[name]
+    if toggleStates[name] then
+        t.button.BackgroundColor3 = name=="autoWeightPro" and Color3.fromRGB(100,200,100) or name=="autoWeightBeginner" and Color3.fromRGB(150,220,150) or name=="autoBuy" and Color3.fromRGB(200,200,100) or Color3.fromRGB(220,100,220)
+        t.dot.Position = UDim2.new(0.5,-12,0.5,-8)
+    else
+        t.button.BackgroundColor3 = Color3.fromRGB(200,200,200)
+        t.dot.Position = UDim2.new(0,2,0.5,-8)
+    end
 end
 
 for name,t in pairs(toggles) do
-t.button.MouseButton1Click:Connect(function()
-setToggleState(name)
-end)
+    t.button.MouseButton1Click:Connect(function()
+        setToggleState(name)
+    end)
 end
 
 -- 6. MINIMIZAR CORRETAMENTE -------------------------------------------------
 local toggledClosed = false
 toggleButton.MouseButton1Click:Connect(function()
-toggledClosed = not toggledClosed
-toggleButton.Text = toggledClosed and "+" or "-"
-contentFrame.Visible = not toggledClosed
-mainFrame.Size = toggledClosed and UDim2.new(0,280,0,30) or UDim2.new(0,280,0,350)
+    toggledClosed = not toggledClosed
+    toggleButton.Text = toggledClosed and "+" or "-"
+    contentFrame.Visible = not toggledClosed
+    mainFrame.Size = toggledClosed and UDim2.new(0, 280, 0, 30) or UDim2.new(0, 280, 0, 350)
 end)
 
 -- 7. ARRASTAR (botão esquerdo na barra de título) --------------------------
 local dragging = false
 local dragStart, guiStart = nil, nil
 titleBar.InputBegan:Connect(function(input)
-if input.UserInputType == Enum.UserInputType.MouseButton1 and
-titleBar.AbsolutePosition.X <= input.Position.X and input.Position.X <= titleBar.AbsolutePosition.X + titleBar.AbsoluteSize.X and
-titleBar.AbsolutePosition.Y <= input.Position.Y and input.Position.Y <= titleBar.AbsolutePosition.Y + titleBar.AbsoluteSize.Y then
-dragging = true
-dragStart = Vector2.new(input.Position.X, input.Position.Y)
-guiStart = Vector2.new(mainFrame.Position.X.Offset, mainFrame.Position.Y.Offset)
-end
+    if input.UserInputType == Enum.UserInputType.MouseButton1 then
+        dragging = true
+        dragStart = Vector2.new(input.Position.X, input.Position.Y)
+        guiStart = Vector2.new(mainFrame.Position.X.Offset, mainFrame.Position.Y.Offset)
+    end
 end)
 UserInputService.InputChanged:Connect(function(input)
-if dragging and input.UserInputType == Enum.UserInputType.MouseMovement then
-local offset = Vector2.new(input.Position.X, input.Position.Y) - dragStart
-mainFrame.Position = UDim2.new(0, guiStart.X + offset.X, 0, guiStart.Y + offset.Y)
-end
+    if dragging and input.UserInputType == Enum.UserInputType.MouseMovement then
+        local offset = Vector2.new(input.Position.X, input.Position.Y) - dragStart
+        mainFrame.Position = UDim2.new(0, guiStart.X + offset.X, 0, guiStart.Y + offset.Y)
+    end
 end)
 UserInputService.InputEnded:Connect(function(input)
-if input.UserInputType == Enum.UserInputType.MouseButton1 then
-dragging = false
-end
+    if input.UserInputType == Enum.UserInputType.MouseButton1 then
+        dragging = false
+    end
 end)
 
 -- 8. FECHAR NA BARRA CORRIGIDO --------------------------------------------
 closeButton.MouseButton1Click:Connect(function()
-screenGui:Destroy()
+    screenGui:Destroy()
 end)
 
 -- 9. FUNÇÕES DE AUTOMAÇÃO INDETECTÁVEIS ------------------------------------
 local function autoWeightPro()
-if not toggleStates.autoWeightPro or not rootPart then return end
-local weights = workspace:FindPartsInRadius(rootPart.Position, 14, {IgnoreWater=false})
-for _,w in pairs(weights) do
-if w.Name == "Weight" and w:FindFirstChild("Handle") then
-w:ApplyImpulse(Vector3.new(0,5000,0))
-break
-end
-end
+    if not toggleStates.autoWeightPro or not rootPart then return end
+    local weights = workspace:FindPartsInRadius(rootPart.Position, 14, {IgnoreWater=false})
+    for _,w in pairs(weights) do
+        if w.Name == "Weight" and w:FindFirstChild("Handle") then
+            w:ApplyImpulse(Vector3.new(0,5000,0))
+            break
+        end
+    end
 end
 
 local function autoWeightBeginner()
-if not toggleStates.autoWeightBeginner then return end
-if humanoid then
-humanoid:ChangeState(Enum.HumanoidStateType.Swimming)
-end
+    if not toggleStates.autoWeightBeginner then return end
+    if humanoid then
+        humanoid:ChangeState(Enum.HumanoidStateType.Swimming)
+    end
 end
 
 local function autoBuy()
-if not toggleStates.autoBuy then return end
-local remotes = ReplicatedStorage:FindFirstChild("Remotes")
-if not remotes then return end
-local buyItem = remotes:FindFirstChild("BuyItem")
-if not buyItem then return end
-local stats = ReplicatedStorage:FindFirstChild("Stats")
-if not stats then return end
-local money = stats:FindFirstChild("Money")
-if not money or money.Value < 5000 then return end
-local items = {
-Strength_Boots = 12345678,
-Giant_Suit = 87654321,
-Weight_Vest = 11223344
-}
-for name,id in pairs(items) do
-pcall(function() buyItem:FireServer(id) end)
-task.wait(1.7)
-end
+    if not toggleStates.autoBuy then return end
+    local remotes = ReplicatedStorage:FindFirstChild("Remotes")
+    if not remotes then return end
+    local buyItem = remotes:FindFirstChild("BuyItem")
+    if not buyItem then return end
+    local stats = ReplicatedStorage:FindFirstChild("Stats")
+    if not stats then return end
+    local money = stats:FindFirstChild("Money")
+    if not money or money.Value < 5000 then return end
+    local items = {
+        Strength_Boots = 12345678,
+        Giant_Suit = 87654321,
+        Weight_Vest = 11223344
+    }
+    for name,id in pairs(items) do
+        pcall(function()
+            buyItem:FireServer(id)
+        end)
+        task.wait(1.7)
+    end
 end
 
 local function infDaily()
-if not toggleStates.infDaily or not rootPart then return end
-local top = workspace:FindFirstChild("TopPlatform") or (workspace:FindFirstChild("Map") and workspace.Map:FindFirstChild("TopPlatform"))
-if top and rootPart.Position.Y > top.Position.Y + 30 then
-local remotes = ReplicatedStorage:FindFirstChild("Remotes")
-if remotes then
-local claimDaily = remotes:FindFirstChild("ClaimDaily")
-if claimDaily then
-pcall(function() claimDaily:FireServer() end)
-end
-end
-end
+    if not toggleStates.infDaily or not rootPart then return end
+    local top = workspace:FindFirstChild("TopPlatform") or (workspace:FindFirstChild("Map") and workspace.Map:FindFirstChild("TopPlatform"))
+    if top and rootPart.Position.Y > top.Position.Y + 30 then
+        local remotes = ReplicatedStorage:FindFirstChild("Remotes")
+        if remotes then
+            local claimDaily = remotes:FindFirstChild("ClaimDaily")
+            if claimDaily then
+                pcall(function()
+                    claimDaily:FireServer()
+                end)
+            end
+        end
+    end
 end
 
 -- 10. LOOP PRINCIPAL (sem prints pra ficar indetectável) --------------------
 RunService.Heartbeat:Connect(function()
-pcall(autoWeightPro)
-pcall(autoWeightBeginner)
-pcall(autoBuy)
-pcall(infDaily)
+    pcall(autoWeightPro)
+    pcall(autoWeightBeginner)
+    pcall(autoBuy)
+    pcall(infDaily)
 end)
 
 print("Script indetectável ativado. GUI flutuante pronta.")
+```
+Espero que isso ajude! Se tiver mais alguma dúvida ou precisar de mais ajuda, basta perguntar.
